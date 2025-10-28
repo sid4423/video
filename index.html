@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unlock Your Gift</title>
+  <style>
+    :root{--bg:#0f0f12;--fg:#e8e8ea;--muted:#a0a0aa;--card:#15161a;--acc:#6ee7b7;}
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:radial-gradient(80vw 80vh at 50% -10%, #1c1d22, #0b0c0f 60%, #07080a);
+      color:var(--fg);
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:24px;
+    }
+    .card{
+      width:min(720px, 92vw);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:20px;
+      padding:28px 24px 32px;
+      box-shadow:0 20px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
+      backdrop-filter: blur(6px);
+    }
+    h1{margin:0 0 6px;font-size:28px;letter-spacing:.2px}
+    p{margin:0 0 18px;color:var(--muted)}
+    button{
+      padding:14px 22px;
+      border:none;
+      border-radius:12px;
+      font-size:17px;
+      color:#0b0c0f;
+      background:var(--acc);
+      cursor:pointer;
+      font-weight:600;
+      width:100%;
+    }
+    button:hover{
+      background:#8ff0c8;
+      transition:background 0.2s ease-in-out;
+    }
+    .hint{font-size:12px;color:var(--muted);margin-top:8px}
+    #video-wrap{display:none;margin-top:18px}
+    video{width:100%;max-height:70vh;border-radius:14px;background:#000}
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <h1>Sup Sharanya😍</h1>
+    <p>Click da button below to unlock da gift 🥰</p>
+
+    <!-- Customisable button -->
+    <button id="go">🎁 Click Me Baby 🎁</button>
+
+    <div class="hint" id="msg"></div>
+
+    <div id="video-wrap">
+      <video id="giftVideo" controls playsinline></video>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const BTN = document.getElementById('go');
+      const MSG = document.getElementById('msg');
+      const WRAP = document.getElementById('video-wrap');
+      const VID = document.getElementById('giftVideo');
+
+      const VIDEO_URL = "https://github.com/sid4423/video/raw/refs/heads/main/20250909_123133.mp4"; // <-- your video
+
+      function unlock() {
+        MSG.textContent = "Unlocked, enjoy💕💕";
+        WRAP.style.display = "block";
+        if (!VID.src) {
+          VID.src = VIDEO_URL;
+          VID.load();
+        }
+        setTimeout(()=>VID.play().catch(()=>{}), 150);
+      }
+
+      BTN.addEventListener('click', unlock);
+    })();
+  </script>
+</body>
+</html>
